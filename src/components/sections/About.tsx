@@ -20,27 +20,40 @@ export function About() {
         scrollTrigger: { trigger: rootRef.current, start: "top 80%" },
       });
 
+      gsap.set(".about-word", { opacity: 0.15, y: 8 });
       gsap.to(".about-word", {
         opacity: 1,
         y: 0,
         ease: "none",
         stagger: 0.02,
         scrollTrigger: {
-          trigger: ".about-text",
+          trigger: ".about-panel",
           start: "top 85%",
           end: "bottom 60%",
-          scrub: 1,
+          scrub: 0.8,
         },
       });
 
       gsap.from(".about-stat", {
         opacity: 0,
-        y: 40,
+        y: 30,
         duration: 0.9,
         ease: "power3.out",
-        stagger: 0.15,
+        stagger: 0.12,
         scrollTrigger: { trigger: ".about-stats", start: "top 85%" },
       });
+
+      gsap.fromTo(
+        ".about-panel",
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          ease: "power3.out",
+          duration: 1,
+          scrollTrigger: { trigger: rootRef.current, start: "top 75%" },
+        },
+      );
     }, rootRef);
     return () => ctx.revert();
   }, []);
@@ -56,19 +69,19 @@ export function About() {
     <section
       ref={rootRef}
       id="about"
-      className="relative bg-background px-6 py-32 md:py-48"
+      className="relative px-6 py-32 md:py-48"
     >
-      <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-12">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <div className="about-eyebrow sticky top-32">
             <div className="mb-4 flex items-center gap-3">
               <span className="text-xs text-accent">01</span>
               <span className="h-px w-8 bg-accent" />
-              <span className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
+              <span className="track-wide text-[10px] uppercase text-white/60">
                 About
               </span>
             </div>
-            <h2 className="font-display text-4xl font-light leading-tight tracking-tight md:text-6xl">
+            <h2 className="font-display text-4xl font-light leading-tight tracking-tight text-white md:text-6xl">
               A developer who builds{" "}
               <span className="italic text-accent">with intent.</span>
             </h2>
@@ -76,29 +89,30 @@ export function About() {
         </div>
 
         <div className="lg:col-span-8">
-          <p className="about-text font-display text-2xl font-light leading-[1.5] tracking-tight text-balance md:text-4xl">
-            {paragraph.split(" ").map((w, i) => (
-              <span
-                key={i}
-                className="about-word inline-block opacity-20 translate-y-2 pr-[0.25em]"
-                style={{ willChange: "opacity, transform" }}
-              >
-                {w}
-              </span>
-            ))}
-          </p>
+          <div className="about-panel glass-strong rounded-3xl p-8 md:p-12">
+            <p className="font-display text-xl font-light leading-[1.55] tracking-tight text-white text-balance md:text-3xl">
+              {paragraph.split(" ").map((w, i) => (
+                <span
+                  key={i}
+                  className="about-word inline-block pr-[0.25em] will-change-[opacity,transform]"
+                >
+                  {w}
+                </span>
+              ))}
+            </p>
 
-          <div className="about-stats mt-20 grid grid-cols-2 gap-8 border-t border-white/10 pt-10 md:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.v} className="about-stat">
-                <div className="font-display text-4xl font-light text-accent md:text-5xl">
-                  {s.k}
+            <div className="about-stats mt-12 grid grid-cols-2 gap-8 border-t border-white/10 pt-10 md:grid-cols-4">
+              {stats.map((s) => (
+                <div key={s.v} className="about-stat">
+                  <div className="font-display text-4xl font-light text-accent md:text-5xl">
+                    {s.k}
+                  </div>
+                  <div className="track-wide mt-2 text-[10px] uppercase text-white/60">
+                    {s.v}
+                  </div>
                 </div>
-                <div className="mt-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                  {s.v}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

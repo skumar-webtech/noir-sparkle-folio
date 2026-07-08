@@ -2,6 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Preloader } from "@/components/Preloader";
 import { Nav } from "@/components/Nav";
+import { VideoStage } from "@/components/VideoStage";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Skills } from "@/components/sections/Skills";
@@ -18,10 +21,7 @@ export const Route = createFileRoute("/")({
         content:
           "Portfolio of Saurabh Kumar Tiwari — Full Stack Developer specializing in MERN, Next.js, Angular, LLM integration, and cloud-scale web applications.",
       },
-      {
-        property: "og:title",
-        content: "Saurabh Kumar Tiwari — Full Stack Developer",
-      },
+      { property: "og:title", content: "Saurabh Kumar Tiwari — Full Stack Developer" },
       {
         property: "og:description",
         content:
@@ -35,18 +35,42 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const [ready, setReady] = useState(false);
+  const [videosReady, setVideosReady] = useState(false);
+  const [preloaderDone, setPreloaderDone] = useState(false);
 
   return (
-    <main className="relative bg-background text-foreground">
-      <Preloader onDone={() => setReady(true)} />
-      {ready && <Nav />}
-      <Hero />
-      <About />
-      <Skills />
-      <Coding />
-      <Projects />
-      <Contact />
+    <main className="relative" style={{ background: "#050505" }}>
+      <Preloader ready={videosReady} onDone={() => setPreloaderDone(true)} />
+      <SmoothScroll />
+      <VideoStage onReady={() => setVideosReady(true)} />
+      {preloaderDone && (
+        <>
+          <ScrollProgress />
+          <Nav />
+        </>
+      )}
+
+      {/* Stage 1: FSD video (Hero + About + Skills) */}
+      <div id="stage-fsd" className="relative z-10">
+        <Hero />
+        <About />
+        <Skills />
+      </div>
+
+      {/* Stage 2: Coding video */}
+      <div id="stage-coding" className="relative z-10">
+        <Coding />
+      </div>
+
+      {/* Stage 3: Projects video */}
+      <div id="stage-projects" className="relative z-10">
+        <Projects />
+      </div>
+
+      {/* Contact — no video, own abstract background */}
+      <div className="relative z-10">
+        <Contact />
+      </div>
     </main>
   );
 }
