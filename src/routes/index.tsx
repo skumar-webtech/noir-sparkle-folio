@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "MERN · Next.js · Angular · LLM integration · AWS & Azure. Building scalable, cinematic web experiences.",
+          "Portfolio of Saurabh Kumar Tiwari — Full Stack Developer specializing in MERN, Next.js, Angular, LLM integration, and cloud-scale web applications.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

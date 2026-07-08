@@ -81,11 +81,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Portfolio of Saurabh Kumar Tiwari — Full Stack Developer building scalable MERN, Next.js and AI-powered web applications.",
+          "Portfolio of Saurabh Kumar Tiwari — Full Stack Developer specializing in MERN, Next.js, Angular, LLM integration, and cloud-scale web applications.",
       },
       { name: "author", content: "Saurabh Kumar Tiwari" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Saurabh Kumar Tiwari — Full Stack Developer" },
+      { name: "twitter:title", content: "Saurabh Kumar Tiwari — Full Stack Developer" },
+      { property: "og:description", content: "Portfolio of Saurabh Kumar Tiwari — Full Stack Developer specializing in MERN, Next.js, Angular, LLM integration, and cloud-scale web applications." },
+      { name: "twitter:description", content: "Portfolio of Saurabh Kumar Tiwari — Full Stack Developer specializing in MERN, Next.js, Angular, LLM integration, and cloud-scale web applications." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/239aa059-dba0-4ae2-93ba-6a33ed9e05cc/id-preview-0a4c2c97--c3594e60-921b-437b-94cb-24a57c05e07d.lovable.app-1783506506145.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/239aa059-dba0-4ae2-93ba-6a33ed9e05cc/id-preview-0a4c2c97--c3594e60-921b-437b-94cb-24a57c05e07d.lovable.app-1783506506145.png" },
     ],
     links: [
       {
