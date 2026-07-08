@@ -20,20 +20,27 @@ export function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "py-3" : "py-6"
+      className={`fixed inset-x-0 top-0 z-[55] transition-all duration-500 ${
+        scrolled ? "py-3" : "py-5"
       }`}
     >
       <div
-        className={`mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-500 ${
-          scrolled
-            ? "glass rounded-full px-6 py-2.5 md:mx-6"
-            : ""
+        className={`mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 md:px-6 ${
+          scrolled ? "mx-4 rounded-full px-5 py-2.5 md:mx-6" : ""
         }`}
+        style={
+          scrolled
+            ? {
+                background: "rgba(5, 5, 5, 0.6)",
+                backdropFilter: "blur(10px) saturate(160%)",
+                border: "1px solid rgba(255, 255, 255, 0.08)",
+              }
+            : undefined
+        }
       >
         <a
           href="#top"
-          className="font-display text-sm tracking-[0.3em] text-foreground"
+          className="track-wide font-display text-sm text-white"
         >
           SKT<span className="text-accent">.</span>
         </a>
@@ -43,7 +50,7 @@ export function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="group relative text-xs uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-foreground"
+              className="track-wide group relative text-xs uppercase text-white/60 transition-colors hover:text-white"
             >
               {l.label}
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
@@ -53,7 +60,7 @@ export function Nav() {
 
         <a
           href="#contact"
-          className="hidden rounded-full border border-white/15 px-4 py-2 text-[10px] uppercase tracking-[0.25em] text-foreground transition-all hover:border-accent hover:text-accent md:inline-block"
+          className="track-wide hidden rounded-full border border-white/15 px-4 py-2 text-[10px] uppercase text-white transition-all hover:border-accent hover:text-accent md:inline-block"
         >
           Let's Talk
         </a>
@@ -64,22 +71,29 @@ export function Nav() {
           className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 md:hidden"
         >
           <span
-            className={`h-px w-5 bg-foreground transition ${open ? "translate-y-[3px] rotate-45" : ""}`}
+            className={`h-px w-5 bg-white transition ${open ? "translate-y-[3px] rotate-45" : ""}`}
           />
           <span
-            className={`h-px w-5 bg-foreground transition ${open ? "-translate-y-[3px] -rotate-45" : ""}`}
+            className={`h-px w-5 bg-white transition ${open ? "-translate-y-[3px] -rotate-45" : ""}`}
           />
         </button>
       </div>
 
       {open && (
-        <div className="mx-6 mt-2 flex flex-col gap-1 rounded-2xl glass p-4 md:hidden">
+        <div
+          className="mx-4 mt-2 flex flex-col gap-1 rounded-2xl p-4 md:hidden"
+          style={{
+            background: "rgba(5, 5, 5, 0.75)",
+            backdropFilter: "blur(10px) saturate(160%)",
+            border: "1px solid rgba(255, 255, 255, 0.08)",
+          }}
+        >
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="rounded-lg px-3 py-3 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:bg-white/5 hover:text-foreground"
+              className="track-wide rounded-lg px-3 py-3 text-xs uppercase text-white/70 hover:bg-white/5 hover:text-white"
             >
               {l.label}
             </a>
