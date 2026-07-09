@@ -19,9 +19,9 @@ const stages: Stage[] = [
   { key: "projects", src: projects.url, triggerId: "stage-projects" },
 ];
 
-type Props = { onReady: () => void };
+type Props = { onReady: () => void; onProgress?: (p: number) => void };
 
-export function VideoStage({ onReady }: Props) {
+export function VideoStage({ onReady, onProgress }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
   const [loaded, setLoaded] = useState(0);
@@ -33,6 +33,7 @@ export function VideoStage({ onReady }: Props) {
     const onOne = () => {
       done += 1;
       setLoaded(done);
+      onProgress?.(Math.round((done / total) * 100));
       if (done >= total) onReady();
     };
 
