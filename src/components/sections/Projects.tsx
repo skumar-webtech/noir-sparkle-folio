@@ -41,23 +41,31 @@ export function Projects() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>(".proj-cat").forEach((cat) => {
-        gsap.from(cat.querySelectorAll(".proj-card, .proj-cat-label"), {
-          opacity: 0,
-          y: 40,
-          duration: 0.9,
-          ease: "power3.out",
-          stagger: 0.08,
-          scrollTrigger: { trigger: cat, start: "top 82%" },
-        });
+        gsap.fromTo(
+          cat.querySelectorAll(".proj-card, .proj-cat-label"),
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            stagger: 0.08,
+            scrollTrigger: { trigger: cat, start: "top 90%" },
+          },
+        );
       });
 
-      gsap.from(".projects-header", {
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: { trigger: rootRef.current, start: "top 80%" },
-      });
+      gsap.fromTo(
+        ".projects-header",
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: { trigger: rootRef.current, start: "top 85%" },
+        },
+      );
     }, rootRef);
     return () => ctx.revert();
   }, []);
