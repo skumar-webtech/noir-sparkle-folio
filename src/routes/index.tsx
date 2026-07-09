@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+gsap.registerPlugin(ScrollTrigger);
 import { Preloader } from "@/components/Preloader";
 import { Nav } from "@/components/Nav";
 import { VideoStage } from "@/components/VideoStage";
