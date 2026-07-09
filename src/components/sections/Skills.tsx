@@ -174,10 +174,10 @@ export function Skills() {
                       {g.items.map((item) => (
                         <span
                           key={item}
-                          className="rounded-full border border-accent/25 bg-accent/5 px-4 py-2 font-mono text-[11px] text-accent/90 transition hover:border-accent hover:bg-accent/15 hover:text-accent"
+                          className="rounded-full border border-white/20 bg-white/10 px-4 py-2 font-mono text-[11px] text-white transition hover:border-accent/60 hover:bg-white/[0.18] hover:text-accent"
                           style={{
-                            textShadow:
-                              "0 0 12px oklch(0.78 0.14 78 / 0.4)",
+                            backdropFilter: "blur(6px) saturate(140%)",
+                            textShadow: "0 0 12px oklch(0.78 0.14 78 / 0.35)",
                           }}
                         >
                           {item}
