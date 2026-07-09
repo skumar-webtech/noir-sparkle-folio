@@ -18,23 +18,31 @@ export function Coding() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".cap-card", {
-        opacity: 0,
-        y: 50,
-        duration: 0.9,
-        ease: "power3.out",
-        stagger: 0.07,
-        scrollTrigger: { trigger: ".cap-grid", start: "top 82%" },
-      });
+      gsap.fromTo(
+        ".cap-card",
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: 0.07,
+          scrollTrigger: { trigger: ".cap-grid", start: "top 90%" },
+        },
+      );
 
-      gsap.from(".coding-headline .h-word", {
-        yPercent: 110,
-        opacity: 0,
-        ease: "expo.out",
-        stagger: 0.08,
-        duration: 1.1,
-        scrollTrigger: { trigger: ".coding-headline", start: "top 80%" },
-      });
+      gsap.fromTo(
+        ".coding-headline .h-word",
+        { yPercent: 110, opacity: 0 },
+        {
+          yPercent: 0,
+          opacity: 1,
+          ease: "expo.out",
+          stagger: 0.08,
+          duration: 1.1,
+          scrollTrigger: { trigger: ".coding-headline", start: "top 85%" },
+        },
+      );
     }, rootRef);
     return () => ctx.revert();
   }, []);
