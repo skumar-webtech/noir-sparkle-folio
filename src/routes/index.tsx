@@ -36,13 +36,21 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const [videosReady, setVideosReady] = useState(false);
+  const [videoProgress, setVideoProgress] = useState(0);
   const [preloaderDone, setPreloaderDone] = useState(false);
 
   return (
     <main className="relative" style={{ background: "#050505" }}>
-      <Preloader ready={videosReady} onDone={() => setPreloaderDone(true)} />
+      <Preloader
+        ready={videosReady}
+        progress={videoProgress}
+        onDone={() => setPreloaderDone(true)}
+      />
       <SmoothScroll />
-      <VideoStage onReady={() => setVideosReady(true)} />
+      <VideoStage
+        onReady={() => setVideosReady(true)}
+        onProgress={setVideoProgress}
+      />
       {preloaderDone && (
         <>
           <ScrollProgress />
