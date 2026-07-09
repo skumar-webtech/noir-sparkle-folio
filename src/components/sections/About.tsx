@@ -34,14 +34,18 @@ export function About() {
         },
       });
 
-      gsap.from(".about-stat", {
-        opacity: 0,
-        y: 30,
-        duration: 0.9,
-        ease: "power3.out",
-        stagger: 0.12,
-        scrollTrigger: { trigger: ".about-stats", start: "top 85%" },
-      });
+      gsap.fromTo(
+        ".about-stat",
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: 0.12,
+          scrollTrigger: { trigger: ".about-stats", start: "top 90%" },
+        },
+      );
 
       gsap.fromTo(
         ".about-panel",

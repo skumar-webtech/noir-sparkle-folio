@@ -19,9 +19,9 @@ const stages: Stage[] = [
   { key: "projects", src: projects.url, triggerId: "stage-projects" },
 ];
 
-type Props = { onReady: () => void };
+type Props = { onReady: () => void; onProgress?: (p: number) => void };
 
-export function VideoStage({ onReady }: Props) {
+export function VideoStage({ onReady, onProgress }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
   const [loaded, setLoaded] = useState(0);
@@ -33,6 +33,7 @@ export function VideoStage({ onReady }: Props) {
     const onOne = () => {
       done += 1;
       setLoaded(done);
+      onProgress?.(Math.round((done / total) * 100));
       if (done >= total) onReady();
     };
 
@@ -155,7 +156,7 @@ export function VideoStage({ onReady }: Props) {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(5,5,5,0.55) 0%, rgba(5,5,5,0.35) 40%, rgba(5,5,5,0.7) 100%)",
+                "radial-gradient(ellipse at center, rgba(5,5,5,0.35) 0%, rgba(5,5,5,0.7) 55%, rgba(5,5,5,0.92) 100%), linear-gradient(180deg, rgba(5,5,5,0.5) 0%, rgba(5,5,5,0.4) 40%, rgba(5,5,5,0.75) 100%)",
             }}
           />
         </div>

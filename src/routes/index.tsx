@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+gsap.registerPlugin(ScrollTrigger);
 import { Preloader } from "@/components/Preloader";
 import { Nav } from "@/components/Nav";
 import { VideoStage } from "@/components/VideoStage";
@@ -36,13 +39,27 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const [videosReady, setVideosReady] = useState(false);
+  const [videoProgress, setVideoProgress] = useState(0);
   const [preloaderDone, setPreloaderDone] = useState(false);
+  useEffect(() => {
+    if (!preloaderDone) return;
+    const t = setTimeout(() => ScrollTrigger.refresh(), 100);
+    return () => clearTimeout(t);
+  }, [preloaderDone]);
+
 
   return (
     <main className="relative" style={{ background: "#050505" }}>
-      <Preloader ready={videosReady} onDone={() => setPreloaderDone(true)} />
+      <Preloader
+        ready={videosReady}
+        progress={videoProgress}
+        onDone={() => setPreloaderDone(true)}
+      />
       <SmoothScroll />
-      <VideoStage onReady={() => setVideosReady(true)} />
+      <VideoStage
+        onReady={() => setVideosReady(true)}
+        onProgress={setVideoProgress}
+      />
       {preloaderDone && (
         <>
           <ScrollProgress />

@@ -41,23 +41,31 @@ export function Projects() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>(".proj-cat").forEach((cat) => {
-        gsap.from(cat.querySelectorAll(".proj-card, .proj-cat-label"), {
-          opacity: 0,
-          y: 40,
-          duration: 0.9,
-          ease: "power3.out",
-          stagger: 0.08,
-          scrollTrigger: { trigger: cat, start: "top 82%" },
-        });
+        gsap.fromTo(
+          cat.querySelectorAll(".proj-card, .proj-cat-label"),
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            stagger: 0.08,
+            scrollTrigger: { trigger: cat, start: "top 90%" },
+          },
+        );
       });
 
-      gsap.from(".projects-header", {
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: { trigger: rootRef.current, start: "top 80%" },
-      });
+      gsap.fromTo(
+        ".projects-header",
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: { trigger: rootRef.current, start: "top 85%" },
+        },
+      );
     }, rootRef);
     return () => ctx.revert();
   }, []);
@@ -98,23 +106,28 @@ export function Projects() {
                   <a
                     key={p.t}
                     href="#"
-                    className="proj-card group glass-strong relative aspect-[4/3] overflow-hidden rounded-2xl transition-all duration-700 hover:border-accent/50"
+                    className="proj-card group relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 transition-all duration-500 hover:-translate-y-1 hover:scale-[1.015] hover:border-accent/60 hover:glow-accent"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(5,5,5,0.75), rgba(5,5,5,0.55))",
+                      backdropFilter: "blur(18px) saturate(160%)",
+                    }}
                   >
                     <div
-                      className="absolute inset-0 opacity-60 transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+                      className="absolute inset-0 opacity-70 transition-transform duration-[1200ms] ease-out group-hover:scale-110"
                       style={{
-                        backgroundImage: `radial-gradient(circle at 30% 30%, oklch(0.78 0.14 78 / 0.35), transparent 60%), linear-gradient(135deg, oklch(0.15 0.02 260), oklch(0.06 0 0))`,
+                        backgroundImage: `radial-gradient(circle at 30% 30%, oklch(0.78 0.14 78 / 0.28), transparent 60%), linear-gradient(135deg, oklch(0.14 0.03 260), oklch(0.05 0 0))`,
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/50 to-transparent" />
                     <div className="absolute inset-0 flex flex-col justify-end p-8">
-                      <span className="track-wide font-mono text-[10px] uppercase text-accent">
+                      <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
                         {p.tag}
                       </span>
-                      <h4 className="mt-3 font-display text-2xl font-light leading-tight text-white md:text-3xl">
-                        {p.t}
+                      <h4 className="mt-3 font-syncopate text-lg font-normal leading-tight text-white md:text-xl">
+                        {p.t.toUpperCase()}
                       </h4>
-                      <div className="track-wide mt-4 flex items-center gap-2 text-xs uppercase text-white/60 opacity-0 transition-all duration-500 group-hover:translate-x-2 group-hover:opacity-100">
+                      <div className="mt-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/60 opacity-0 transition-all duration-500 group-hover:translate-x-2 group-hover:opacity-100">
                         View Case <span>→</span>
                       </div>
                     </div>
