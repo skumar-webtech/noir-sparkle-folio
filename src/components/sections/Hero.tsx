@@ -66,7 +66,7 @@ export function Hero() {
           <span className="h-px w-10 bg-accent" />
         </div>
 
-        <h1 className="font-display text-[clamp(2.5rem,10vw,9rem)] font-light leading-[0.9] tracking-tight text-white">
+        <h1 className="font-syncopate text-[clamp(1.8rem,7.5vw,6.5rem)] font-normal leading-[1.05] text-white">
           <span className="block overflow-hidden">
             {first.split("").map((ch, i) => (
               <span
@@ -77,7 +77,7 @@ export function Hero() {
               </span>
             ))}
           </span>
-          <span className="block overflow-hidden italic text-accent">
+          <span className="block overflow-hidden text-accent">
             {last.split("").map((ch, i) => (
               <span
                 key={`l-${i}`}
