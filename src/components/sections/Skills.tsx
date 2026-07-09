@@ -125,13 +125,11 @@ export function Skills() {
                 key={g.label}
                 className={`skill-card group relative overflow-hidden rounded-2xl border transition-all duration-500 ${
                   isOpen
-                    ? "border-accent/50 glow-accent"
-                    : "border-white/10 hover:border-white/25"
+                    ? "border-accent/40 bg-white/[0.06] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_0_60px_-10px_oklch(0.78_0.14_78/0.35)]"
+                    : "border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_0_40px_-15px_oklch(0.78_0.14_78/0.25)]"
                 }`}
                 style={{
-                  background:
-                    "linear-gradient(135deg, rgba(5,5,5,0.75), rgba(5,5,5,0.55))",
-                  backdropFilter: "blur(18px) saturate(160%)",
+                  backdropFilter: "blur(12px) saturate(150%)",
                 }}
               >
                 <button
@@ -176,10 +174,10 @@ export function Skills() {
                       {g.items.map((item) => (
                         <span
                           key={item}
-                          className="rounded-full border border-accent/25 bg-accent/5 px-4 py-2 font-mono text-[11px] text-accent/90 transition hover:border-accent hover:bg-accent/15 hover:text-accent"
+                          className="rounded-full border border-white/20 bg-white/10 px-4 py-2 font-mono text-[11px] text-white transition hover:border-accent/60 hover:bg-white/[0.18] hover:text-accent"
                           style={{
-                            textShadow:
-                              "0 0 12px oklch(0.78 0.14 78 / 0.4)",
+                            backdropFilter: "blur(6px) saturate(140%)",
+                            textShadow: "0 0 12px oklch(0.78 0.14 78 / 0.35)",
                           }}
                         >
                           {item}
