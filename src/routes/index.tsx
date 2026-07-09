@@ -41,6 +41,12 @@ function Index() {
   const [videosReady, setVideosReady] = useState(false);
   const [videoProgress, setVideoProgress] = useState(0);
   const [preloaderDone, setPreloaderDone] = useState(false);
+  useEffect(() => {
+    if (!preloaderDone) return;
+    const t = setTimeout(() => ScrollTrigger.refresh(), 100);
+    return () => clearTimeout(t);
+  }, [preloaderDone]);
+
 
   return (
     <main className="relative" style={{ background: "#050505" }}>
