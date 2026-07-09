@@ -155,7 +155,7 @@ export function VideoStage({ onReady }: Props) {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(5,5,5,0.55) 0%, rgba(5,5,5,0.35) 40%, rgba(5,5,5,0.7) 100%)",
+                "radial-gradient(ellipse at center, rgba(5,5,5,0.35) 0%, rgba(5,5,5,0.7) 55%, rgba(5,5,5,0.92) 100%), linear-gradient(180deg, rgba(5,5,5,0.5) 0%, rgba(5,5,5,0.4) 40%, rgba(5,5,5,0.75) 100%)",
             }}
           />
         </div>
