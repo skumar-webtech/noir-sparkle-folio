@@ -52,10 +52,10 @@ export function Contact() {
       id="contact"
       className="relative overflow-hidden px-6 py-32 md:py-48"
     >
-      {/* Animated abstract background */}
-      <div className="absolute inset-0 -z-0 bg-background">
+      {/* Animated abstract accents — transparent so the video shows through */}
+      <div className="pointer-events-none absolute inset-0 -z-0">
         <div
-          className="absolute -left-40 top-20 h-[500px] w-[500px] rounded-full opacity-30 blur-3xl"
+          className="absolute -left-40 top-20 h-[500px] w-[500px] rounded-full opacity-25 blur-3xl"
           style={{
             background:
               "radial-gradient(circle, oklch(0.75 0.15 75), transparent 70%)",
@@ -63,7 +63,7 @@ export function Contact() {
           }}
         />
         <div
-          className="absolute -right-40 bottom-10 h-[600px] w-[600px] rounded-full opacity-25 blur-3xl"
+          className="absolute -right-40 bottom-10 h-[600px] w-[600px] rounded-full opacity-20 blur-3xl"
           style={{
             background:
               "radial-gradient(circle, oklch(0.5 0.2 280), transparent 70%)",
@@ -71,15 +71,15 @@ export function Contact() {
           }}
         />
         <div
-          className="absolute left-1/3 top-1/2 h-[400px] w-[400px] rounded-full opacity-20 blur-3xl"
+          className="absolute left-1/3 top-1/2 h-[400px] w-[400px] rounded-full opacity-15 blur-3xl"
           style={{
             background:
               "radial-gradient(circle, oklch(0.6 0.18 200), transparent 70%)",
             animation: "float-slow 20s ease-in-out infinite",
           }}
         />
-        <div className="absolute inset-0 grain" />
       </div>
+
 
       <div className="relative z-10 mx-auto max-w-6xl">
         <div className="mb-4 flex items-center gap-3">
