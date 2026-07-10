@@ -148,3 +148,7 @@
 
 /* Prevent tap flash */
 * { -webkit-tap-highlight-color: transparent; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
