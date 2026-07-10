@@ -13,6 +13,7 @@ import { About } from "@/components/sections/About";
 import { Skills } from "@/components/sections/Skills";
 import { Coding } from "@/components/sections/Coding";
 import { Projects } from "@/components/sections/Projects";
+import { TechMarquee } from "@/components/TechMarquee";
 import { Contact } from "@/components/sections/Contact";
 
 export const Route = createFileRoute("/")({
@@ -78,6 +79,9 @@ function Index() {
       <div id="stage-coding" className="relative z-10">
         <Coding />
       </div>
+
+      {/* Tech stack marquee — between Coding & Projects */}
+      <TechMarquee />
 
       {/* Stage 3: Projects video */}
       <div id="stage-projects" className="relative z-10">

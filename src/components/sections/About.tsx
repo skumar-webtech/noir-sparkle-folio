@@ -93,7 +93,7 @@ export function About() {
         </div>
 
         <div className="lg:col-span-8">
-          <div className="about-panel glass-strong rounded-3xl p-8 md:p-12">
+          <div className="about-panel liquid-glass rounded-2xl p-8 text-white shadow-xl md:p-12">
             <p className="font-display text-xl font-light leading-[1.55] tracking-tight text-white text-balance md:text-3xl">
               {paragraph.split(" ").map((w, i) => (
                 <span

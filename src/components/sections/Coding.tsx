@@ -79,7 +79,7 @@ export function Coding() {
           {capabilities.map((c) => (
             <div
               key={c.n}
-              className="cap-card glass-strong group relative overflow-hidden rounded-2xl p-8 transition-all duration-500 hover:border-accent/40"
+              className="cap-card liquid-glass group relative overflow-hidden rounded-2xl p-8 text-white shadow-xl transition-all duration-500 hover:border-accent/40"
             >
               <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-accent/20 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
               <div className="relative">
