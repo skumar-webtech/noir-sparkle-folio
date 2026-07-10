@@ -66,8 +66,8 @@ export function Hero() {
           <span className="h-px w-10 bg-accent" />
         </div>
 
-        <h1 className="font-syncopate text-[clamp(1.8rem,7.5vw,6.5rem)] font-normal leading-[1.05] text-white">
-          <span className="block overflow-hidden">
+        <h1 className="font-syncopate text-[clamp(1.1rem,6.2vw,6rem)] font-normal leading-[1.05] text-white">
+          <span className="block overflow-hidden whitespace-nowrap">
             {first.split("").map((ch, i) => (
               <span
                 key={`f-${i}`}
@@ -77,7 +77,7 @@ export function Hero() {
               </span>
             ))}
           </span>
-          <span className="block overflow-hidden text-accent">
+          <span className="block overflow-hidden whitespace-nowrap text-accent">
             {last.split("").map((ch, i) => (
               <span
                 key={`l-${i}`}
