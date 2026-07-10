@@ -80,6 +80,9 @@ function Index() {
         <Coding />
       </div>
 
+      {/* Tech stack marquee — between Coding & Projects */}
+      <TechMarquee />
+
       {/* Stage 3: Projects video */}
       <div id="stage-projects" className="relative z-10">
         <Projects />
