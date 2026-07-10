@@ -170,7 +170,7 @@ export function Contact() {
             </div>
           </form>
 
-          <aside className="lg:col-span-5 lg:pl-12">
+          <aside className="liquid-glass rounded-2xl p-8 text-white shadow-xl lg:col-span-5 md:p-10">
             <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
               Available for
             </p>
