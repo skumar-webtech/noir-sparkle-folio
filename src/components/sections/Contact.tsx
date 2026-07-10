@@ -5,11 +5,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const socials = [
-  { l: "GitHub", h: "#" },
-  { l: "LinkedIn", h: "#" },
-  { l: "Instagram", h: "#" },
-  { l: "Dribbble", h: "#" },
-  { l: "Twitter", h: "#" },
+  { l: "GitHub", h: "https://github.com/Kumar-Saurabh-Tiwari" },
+  { l: "LinkedIn", h: "https://www.linkedin.com/in/saurabh-tiwari11/" },
+  { l: "Instagram", h: "https://www.instagram.com/skumar_webtech" },
+  { l: "X", h: "https://x.com/SaurabhKumar_11" },
 ];
 
 export function Contact() {
@@ -184,10 +183,10 @@ export function Contact() {
                   Email
                 </div>
                 <a
-                  href="mailto:hello@saurabh.dev"
+                  href="mailto:hello@skumar.space"
                   className="mt-1 block font-display text-xl text-foreground hover:text-accent"
                 >
-                  hello@saurabh.dev
+                  hello@skumar.space
                 </a>
               </div>
               <div>
