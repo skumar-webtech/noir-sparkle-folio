@@ -111,7 +111,7 @@ export function Contact() {
               setSent(true);
               setTimeout(() => setSent(false), 3000);
             }}
-            className="contact-form space-y-6 lg:col-span-7"
+            className="contact-form liquid-glass space-y-6 rounded-2xl p-8 text-white shadow-xl lg:col-span-7 md:p-10"
           >
             <div className="contact-field grid gap-6 md:grid-cols-2">
               <label className="block">
