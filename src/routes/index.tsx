@@ -13,6 +13,7 @@ import { About } from "@/components/sections/About";
 import { Skills } from "@/components/sections/Skills";
 import { Coding } from "@/components/sections/Coding";
 import { Projects } from "@/components/sections/Projects";
+import { TechMarquee } from "@/components/TechMarquee";
 import { Contact } from "@/components/sections/Contact";
 
 export const Route = createFileRoute("/")({
