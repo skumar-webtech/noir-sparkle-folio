@@ -92,7 +92,7 @@ export function Hero() {
       {/* Gradient blend into next section */}
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-transparent to-black/80" />
 
-      <div className="hero-content relative z-10 mx-auto w-full max-w-[100vw] max-w-6xl px-4 text-center sm:px-6">
+      <div className="hero-content relative z-10 mx-auto w-full max-w-6xl px-4 text-center sm:px-6" style={{ maxWidth: "min(72rem, 100vw)" }}>
         {/* Glassmorphism pill */}
         <div className="mb-8 flex justify-center hero-meta">
           <div className="relative overflow-hidden rounded-full border border-white/10 bg-white/5 px-6 py-2 backdrop-blur-md">
