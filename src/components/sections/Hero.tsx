@@ -104,7 +104,7 @@ export function Hero() {
         </div>
 
         <h1 className="font-syncopate font-normal leading-[1.05] text-white">
-          <span className="block overflow-hidden text-[clamp(1.75rem,8vw,6.5rem)]">
+          <span className="block overflow-hidden text-[clamp(1.75rem,8vw,6rem)]">
             <span className="inline-block whitespace-nowrap">
               {first.split("").map((ch, i) => (
                 <span
