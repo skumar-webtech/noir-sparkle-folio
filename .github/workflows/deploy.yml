@@ -6,6 +6,11 @@ on:
       - main
       - master
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -13,6 +18,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -32,3 +40,5 @@ jobs:
           publish_dir: ./.output/public
           publish_branch: gh-pages
           allow_empty_commit: true
+          keep_files: false
+          commit_message: 'Deploy GitHub Pages via Actions'
