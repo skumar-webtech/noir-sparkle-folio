@@ -68,21 +68,29 @@ export function VideoStage({ onReady, onProgress }: Props) {
         const v = videoRefs.current[s.key];
         const trigger = document.getElementById(s.triggerId);
         if (!v || !trigger) return;
-        v.pause();
 
-        // Scrub playback with scroll through the whole stage.
-        ScrollTrigger.create({
-          trigger,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 0.6,
-          onUpdate: (self) => {
-            if (!v.duration || !Number.isFinite(v.duration)) return;
-            const t = v.duration * self.progress;
-            // Only assign when meaningfully different — reduces jitter.
-            if (Math.abs(v.currentTime - t) > 0.03) v.currentTime = t;
-          },
-        });
+        // Hero (fsd) plays as a continuous loop — no scroll scrubbing.
+        if (s.key === "fsd") {
+          v.loop = true;
+          v.muted = true;
+          const p = v.play();
+          if (p && typeof p.catch === "function") p.catch(() => {});
+        } else {
+          v.pause();
+          // Scrub playback with scroll through the whole stage.
+          ScrollTrigger.create({
+            trigger,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.6,
+            onUpdate: (self) => {
+              if (!v.duration || !Number.isFinite(v.duration)) return;
+              const t = v.duration * self.progress;
+              if (Math.abs(v.currentTime - t) > 0.03) v.currentTime = t;
+            },
+          });
+        }
+
 
         // Crossfade — visible only while the stage overlaps the viewport.
         gsap.set(v.parentElement, { autoAlpha: 0 });
