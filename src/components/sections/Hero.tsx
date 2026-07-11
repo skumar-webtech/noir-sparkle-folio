@@ -92,7 +92,7 @@ export function Hero() {
       {/* Gradient blend into next section */}
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-transparent to-black/80" />
 
-      <div className="hero-content relative z-10 mx-auto max-w-6xl px-6 text-center">
+      <div className="hero-content relative z-10 mx-auto w-full max-w-[100vw] max-w-6xl px-4 text-center sm:px-6">
         {/* Glassmorphism pill */}
         <div className="mb-8 flex justify-center hero-meta">
           <div className="relative overflow-hidden rounded-full border border-white/10 bg-white/5 px-6 py-2 backdrop-blur-md">
@@ -103,8 +103,8 @@ export function Hero() {
           </div>
         </div>
 
-        <h1 className="font-syncopate font-normal leading-[1.05] text-white text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[6rem]">
-          <span className="block overflow-hidden">
+        <h1 className="font-syncopate font-normal leading-[1.05] text-white">
+          <span className="block overflow-hidden text-[clamp(1.75rem,8vw,6.5rem)]">
             <span className="inline-block whitespace-nowrap">
               {first.split("").map((ch, i) => (
                 <span
@@ -116,7 +116,7 @@ export function Hero() {
               ))}
             </span>
           </span>
-          <span className="block overflow-hidden text-accent">
+          <span className="block overflow-hidden text-accent text-[clamp(1.5rem,6vw,5rem)]">
             <span className="inline-block whitespace-nowrap">
               {last.split("").map((ch, i) => (
                 <span
@@ -132,10 +132,10 @@ export function Hero() {
 
         {/* Typewriter subtitle */}
         <div className="mt-8 flex min-h-[1.8em] items-center justify-center hero-meta">
-          <p className="track-wide text-sm uppercase text-white/75 md:text-base">
+          <h2 className="track-wide text-sm font-normal uppercase text-white/75 md:text-base">
             <span>{typed}</span>
             <span className="ml-1 inline-block h-[1em] w-[2px] translate-y-[2px] animate-pulse bg-accent align-middle" />
-          </p>
+          </h2>
         </div>
       </div>
 
