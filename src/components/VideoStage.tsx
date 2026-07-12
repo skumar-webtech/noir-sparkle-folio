@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import fsd from "@/assets/fsd-bg.mp4.asset.json";
 import coding from "@/assets/coding-bg.mp4.asset.json";
 import projects from "@/assets/projects-bg.mp4.asset.json";
+import { assetUrl } from "@/lib/assetUrl";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,9 +15,9 @@ type Stage = {
 };
 
 const stages: Stage[] = [
-  { key: "fsd", src: fsd.url, triggerId: "stage-fsd" },
-  { key: "coding", src: coding.url, triggerId: "stage-coding" },
-  { key: "projects", src: projects.url, triggerId: "stage-projects" },
+  { key: "fsd", src: assetUrl(fsd), triggerId: "stage-fsd" },
+  { key: "coding", src: assetUrl(coding), triggerId: "stage-coding" },
+  { key: "projects", src: assetUrl(projects), triggerId: "stage-projects" },
 ];
 
 type Props = { onReady: () => void; onProgress?: (p: number) => void };
