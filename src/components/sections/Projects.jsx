@@ -2,6 +2,17 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import img3d from "@/assets/projects/3d-portfolio.png.asset.json";
+import imgAi from "@/assets/projects/Ai-portfolio.png.asset.json";
+import imgSpace from "@/assets/projects/space-portfolio.png.asset.json";
+import imgDevhub from "@/assets/projects/devhub.png.asset.json";
+import imgBatman from "@/assets/projects/batman-landing.png.asset.json";
+import imgMirecall from "@/assets/projects/mirecall-card-vault.png.asset.json";
+import imgCuralink from "@/assets/projects/curalink-health.png.asset.json";
+import imgPan from "@/assets/projects/pan-admin-dashboard.png.asset.json";
+import imgRoamify from "@/assets/projects/roamify-website.png.asset.json";
+import imgSk from "@/assets/projects/sk-web.png.asset.json";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
@@ -9,7 +20,7 @@ const projects = [
     title: "3D Portfolio Website",
     category: "Portfolio Website",
     tools: ["React", "Three.js", "GSAP"],
-    image: "src/assets/projects/3d-portfolio.png",
+    image: img3d.url,
     type: "3D Portfolio",
     link: "https://3d.skumar.space/",
   },
@@ -17,7 +28,7 @@ const projects = [
     title: "AI Portfolio Website",
     category: "Portfolio Website",
     tools: ["React", "Next.js", "Tailwind CSS", "GROQ AI"],
-    image: "src/assets/projects/Ai-portfolio.png",
+    image: imgAi.url,
     type: "AI Portfolio",
     link: "https://canvas-of-dreams-rosy.vercel.app/",
   },
@@ -25,7 +36,7 @@ const projects = [
     title: "Space Portfolio Website",
     category: "Portfolio Website",
     tools: ["React", "Three.js", "TypeScript", "Tailwind CSS"],
-    image: "src/assets/projects/space-portfolio.png",
+    image: imgSpace.url,
     type: "Portfolio Website",
     link: "https://skumar-space.netlify.app/",
   },
@@ -33,7 +44,7 @@ const projects = [
     title: "DevHub It is designed as a resource for developers.",
     category: "Developer Resource Hub",
     tools: ["React", "Next.js", "Tailwind CSS"],
-    image: "src/assets/projects/devhub.png",
+    image: imgDevhub.url,
     type: "Landing Page",
     link: "https://dev-canvas-one.vercel.app/",
   },
@@ -41,23 +52,15 @@ const projects = [
     title: "Batman Theme Landing Page",
     category: "Cinematic Experience",
     tools: ["React", "Vite", "Tailwind CSS"],
-    image: "src/assets/projects/batman-landing.png",
+    image: imgBatman.url,
     type: "Landing Page",
     link: "https://batman-wayne.netlify.app/",
   },
-  // {
-  //   title: "Ben 10 Cinematic Experience",
-  //   category: "Cinematic Experience",
-  //   tools: ["React", "Three.js", "GSAP"],
-  //   image: "/images/mirecall-card-vault.png",
-  //   type: "Cenematic Experience",
-  //   link: "https://ben-10-cenematic-experience.netlify.app/",
-  // },
   {
     title: "MI-Recall Business Card Vault",
     category: "AI Knowledge Vault",
     tools: ["React", "Node.js", "OpenAI"],
-    image: "src/assets/projects/mirecall-card-vault.png",
+    image: imgMirecall.url,
     type: "Landing Page",
     link: "https://mi-recall-business-contact-web.vercel.app",
   },
@@ -65,7 +68,7 @@ const projects = [
     title: "CuraLink AI Health Assistant",
     category: "AI Health Assistant",
     tools: ["React", "Node.js", "OpenAI"],
-    image: "src/assets/projects/curalink-health.png",
+    image: imgCuralink.url,
     type: "AI Assistant",
     link: "https://curalink-ai-research.vercel.app/",
   },
@@ -73,7 +76,7 @@ const projects = [
     title: "PAN Admin Dashboard",
     category: "Admin + Payments Platform",
     tools: ["Next.js", "MongoDB", "Stripe"],
-    image: "src/assets/projects/pan-admin-dashboard.png",
+    image: imgPan.url,
     type: "Admin Dashboard",
     link: "https://admin.panglobal.network",
   },
@@ -81,7 +84,7 @@ const projects = [
     title: "Roamify Tickets — Travel UI",
     category: "Responsive UI",
     tools: ["React", "Responsive Design"],
-    image: "src/assets/projects/roamify-website.png",
+    image: imgRoamify.url,
     type: "Landing Page",
     link: "https://www.roamifyllc.com",
   },
@@ -89,7 +92,7 @@ const projects = [
     title: "SK Web Hub — Agency Landing",
     category: "Marketing Website",
     tools: ["HTML", "CSS", "JavaScript"],
-    image: "src/assets/projects/sk-web.png",
+    image: imgSk.url,
     type: "Landing Page",
     link: "https://sk-web-hub.vercel.app/",
   },
