@@ -128,24 +128,26 @@ const projects = [
 
 function ProjectCard({ p, index }) {
   const [loaded, setLoaded] = useState(false);
-  const [hovered, setHovered] = useState(false);
+  const [warm, setWarm] = useState(false); // start iframe fetch early (intent)
+  const [hovered, setHovered] = useState(false); // reveal iframe over image
   const iframeRef = useRef(null);
 
-  // If iframe hasn't fired onLoad in 6s, assume blocked → keep showing image.
-  useEffect(() => {
-    if (!hovered) return;
-    const t = setTimeout(() => {
-      // Nothing to do — fallback image is already the background.
-    }, 6000);
-    return () => clearTimeout(t);
-  }, [hovered]);
+  // Warm up iframe as soon as the pointer approaches the card, so by the time
+  // the user actually hovers the media, it's already loading (or loaded).
+  const handleIntent = () => setWarm(true);
+  const handleEnter = () => {
+    setWarm(true);
+    setHovered(true);
+  };
 
   return (
     <a
       href={p.link}
       target="_blank"
       rel="noopener noreferrer"
-      onMouseEnter={() => setHovered(true)}
+      onPointerEnter={handleIntent}
+      onFocus={handleIntent}
+      onMouseEnter={handleEnter}
       className="proj-card group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:border-white/30"
       style={{
         backdropFilter: "blur(14px) saturate(150%)",
@@ -162,31 +164,31 @@ function ProjectCard({ p, index }) {
           backgroundPosition: "center",
         }}
       >
-        {/* Loading spinner */}
+        {/* Loading spinner — only while user is actively hovering and iframe not ready */}
         {hovered && !loaded && (
           <div className="absolute inset-0 z-20 flex items-center justify-center">
             <div
-              className="h-12 w-12 rounded-full border-2 border-white/20 border-t-accent"
-              style={{
-                animation: "spin 0.9s linear infinite",
-                backdropFilter: "blur(8px)",
-                background: "rgba(255,255,255,0.05)",
-              }}
+              className="h-10 w-10 rounded-full border-2 border-white/20 border-t-accent"
+              style={{ animation: "spin 0.7s linear infinite" }}
             />
           </div>
         )}
 
-        {/* Iframe on hover, layered over image; if blocked, image shows through */}
-        {hovered && (
+        {/* Iframe mounts on intent (pointer-enter/focus) and stays mounted so
+            re-hover is instant. It's only revealed once loaded AND hovered. */}
+        {warm && (
           <iframe
             ref={iframeRef}
             src={p.link}
             title={p.title}
-            loading="lazy"
+            loading="eager"
             sandbox="allow-scripts allow-same-origin"
             onLoad={() => setLoaded(true)}
-            className="absolute inset-0 z-10 h-full w-full border-0 opacity-0 transition-opacity duration-500"
-            style={{ opacity: loaded ? 1 : 0 }}
+            className="absolute inset-0 z-10 h-full w-full border-0 transition-opacity duration-200"
+            style={{
+              opacity: hovered && loaded ? 1 : 0,
+              pointerEvents: hovered && loaded ? "auto" : "none",
+            }}
           />
         )}
 
