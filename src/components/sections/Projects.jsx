@@ -13,6 +13,9 @@ import imgCuralink from "@/assets/projects/curalink-health.png.asset.json";
 import imgPan from "@/assets/projects/pan-admin-dashboard.png.asset.json";
 import imgRoamify from "@/assets/projects/roamify-website.png.asset.json";
 import imgSk from "@/assets/projects/sk-web.png.asset.json";
+import imgPulseChat from "@/assets/projects/temp/pulse-chat.png";
+import imgFluid from "@/assets/projects/temp/fluid-studio.png";
+import imgNike from "@/assets/projects/temp/nike-web.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,6 +43,30 @@ const projects = [
     image: assetUrl(imgSpace),
     type: "Portfolio Website",
     link: "https://skumar-space.netlify.app/",
+  },
+  {
+    title: "Pulse Chat — Real-time Chat Application",
+    category: "Real-time Chat Application",
+    tools: ["React", "TypeScript", "Tailwind CSS","Socket.io", "Node.js", "Express.js"],
+    image: assetUrl(imgPulseChat),
+    type: "Real-time Chat Application",
+    link: "https://chat.skumar.space/",
+  },
+  {
+    title: "Fluid Studio - Fluid GASP Animation",
+    category: "Fluid Animation",
+    tools: ["HTML", "CSS", "JavaScript", "GSAP"],
+    image: assetUrl(imgFluid),
+    type: "Fluid Animation",
+    link: "https://kumar-saurabh-tiwari.github.io/Fluid-Studio/",
+  },
+  {
+    title: "Parallax Nike Theme",
+    category: "Landing Page",
+    tools: ["HTML", "CSS", "JavaScript", "GSAP"],
+    image: assetUrl(imgNike),
+    type: "Landing Page",
+    link: "https://kumar-saurabh-tiwari.github.io/parallex-nike-theme/",
   },
   {
     title: "DevHub It is designed as a resource for developers.",
