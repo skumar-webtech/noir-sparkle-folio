@@ -63,6 +63,22 @@ const groups: Group[] = [
     ],
   },
   {
+    label: "AI Tools",
+    code: "AIT",
+    tagline: "Generative AI copilots & IDE assistants",
+    pills: [
+      { name: "Claude", sub: "Anthropic reasoning", glow: true },
+      { name: "ChatGPT", sub: "OpenAI GPT models", glow: true },
+      { name: "Lovable", sub: "AI full-stack builder", glow: true },
+      { name: "Gemini", sub: "Google multimodal", glow: true },
+      { name: "Cursor", sub: "AI-native IDE", glow: true },
+      { name: "GitHub Copilot", sub: "Inline code AI", glow: true },
+      { name: "v0", sub: "UI generation", glow: true },
+      { name: "Midjourney", sub: "Visual generation", glow: true },
+      { name: "Perplexity", sub: "AI research", glow: true },
+    ],
+  },
+  {
     label: "DevOps / Cloud",
     code: "OPS",
     tagline: "Ship, scale & observe",
