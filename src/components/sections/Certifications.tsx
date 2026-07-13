@@ -2,12 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { X } from "lucide-react";
-import niitCertificateThumb from "@/assets/certificates/NIIT-Certificate.png";
-import metaCertificateThumb from "@/assets/certificates/Hacker-Rank-React-Developer.png";
-import googleCertificateThumb from "@/assets/certificates/Generative-AI.png";
-import microsoftCertificateThumb from "@/assets/certificates/Microsoft-Azure.png";
-import awsCertificateThumb from "@/assets/certificates/AWS-Certificate.png";
-import interviewPrepThumb from "@/assets/certificates/interview-prep.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,8 +21,8 @@ const certificates: Certificate[] = [
     date: "2022",
     description:
       "Comprehensive certification covering advanced modern JavaScript ecosystems, responsive design, and full-stack web application deployment.",
-    pdfUrl: "src/assets/certificates/NIIT-Certificate.pdf",
-    thumbnail: niitCertificateThumb,
+    pdfUrl: "/certificates/NIIT-Certificate.png",
+    thumbnail: "/certificates/NIIT-Certificate.png",
   },
   {
     title: "Meta Front-End Developer Professional Certificate",
@@ -36,8 +30,8 @@ const certificates: Certificate[] = [
     date: "2026",
     description:
       "Intensive program covering React, UX principles, version control, and production-ready front-end engineering workflows.",
-    pdfUrl: "src/assets/certificates/meta-cert.pdf",
-    thumbnail: metaCertificateThumb,
+    pdfUrl: "/certificates/Hacker-Rank-React-Developer.png",
+    thumbnail: "/certificates/Hacker-Rank-React-Developer.png",
   },
   {
     title: "Google UX Design Professional Certificate",
@@ -45,8 +39,8 @@ const certificates: Certificate[] = [
     date: "2026",
     description:
       "In-depth training in user experience design, including wireframing, prototyping, and usability testing for web and mobile applications.",
-    pdfUrl: "src/assets/certificates/google-ux-cert.pdf",
-    thumbnail: googleCertificateThumb,
+    pdfUrl: "/certificates/Generative-AI.png",
+    thumbnail: "/certificates/Generative-AI.png",
   },
   {
     title: "Microsoft Azure Essentials (AZ-900)",
@@ -54,24 +48,24 @@ const certificates: Certificate[] = [
     date: "2026",
     description:
       "Introduction to cloud concepts, Azure services, and security best practices.",
-    pdfUrl: "src/assets/certificates/microsoft-azure-essentials.pdf",
-    thumbnail: microsoftCertificateThumb,
+    pdfUrl: "/certificates/Microsoft-Azure.png",
+    thumbnail: "/certificates/Microsoft-Azure.png",
   },
   {
     title: "AWS For Beginners: Cloud Practitioner Essentials",
     issuer: "Great Learning",
     date: "2023",
     description:"Validated expertise in designing distributed systems, fault-tolerant architectures, and cost-optimized cloud deployments on AWS.",
-    pdfUrl: "src/assets/certificates/aws-cert.pdf",
-    thumbnail: awsCertificateThumb,
+    pdfUrl: "/certificates/AWS-Certificate.png",
+    thumbnail: "/certificates/AWS-Certificate.png",
   },
   {
     title: "Remasto: Interview Preparation for Full-Stack Software Engineers",
     issuer: "Remasto",
     date: "2026",
     description:"Comprehensive interview preparation covering data structures, algorithms, system design, and behavioral questions for full-stack software engineering roles.",
-    pdfUrl: "src/assets/certificates/aws-cert.pdf",
-    thumbnail: interviewPrepThumb,
+    pdfUrl: "/certificates/interview-prep.png",
+    thumbnail: "/certificates/interview-prep.png",
   },
 ];
 

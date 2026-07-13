@@ -1,15 +1,29 @@
+import {
+  siAngular,
+  siCloudflare,
+  siDocker,
+  siExpress,
+  siFirebase,
+  siGit,
+  siMongodb,
+  siNextdotjs,
+  siNodedotjs,
+  siReact,
+  siTypescript,
+} from "simple-icons";
+
 const stack = [
-  { name: "React", icon: "https://cdn.simpleicons.org/react/ffffff" },
-  { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/ffffff" },
-  { name: "Angular", icon: "https://cdn.simpleicons.org/angular/ffffff" },
-  { name: "Node.js", icon: "https://cdn.simpleicons.org/nodedotjs/ffffff" },
-  { name: "Express", icon: "https://cdn.simpleicons.org/express/ffffff" },
-  { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/ffffff" },
-  { name: "MongoDB", icon: "https://cdn.simpleicons.org/mongodb/ffffff" },
-  { name: "Firebase", icon: "https://cdn.simpleicons.org/firebase/ffffff" },
-  { name: "AWS", icon: "https://cdn.simpleicons.org/amazonwebservices/ffffff" },
-  { name: "Docker", icon: "https://cdn.simpleicons.org/docker/ffffff" },
-  { name: "Git", icon: "https://cdn.simpleicons.org/git/ffffff" },
+  { name: "React", icon: siReact },
+  { name: "Next.js", icon: siNextdotjs },
+  { name: "Angular", icon: siAngular },
+  { name: "Node.js", icon: siNodedotjs },
+  { name: "Express", icon: siExpress },
+  { name: "TypeScript", icon: siTypescript },
+  { name: "MongoDB", icon: siMongodb },
+  { name: "Firebase", icon: siFirebase },
+  { name: "AWS", icon: siCloudflare },
+  { name: "Docker", icon: siDocker },
+  { name: "Git", icon: siGit },
 ];
 
 export function TechMarquee() {
@@ -43,7 +57,9 @@ export function TechMarquee() {
               className="group flex shrink-0 items-center gap-4 px-4"
             >
               <img
-                src={s.icon}
+                src={`data:image/svg+xml,${encodeURIComponent(
+                  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="${s.icon.path}"/></svg>`,
+                )}`}
                 alt={s.name}
                 loading="lazy"
                 className="h-9 w-9 opacity-70 transition-all duration-500 group-hover:opacity-100"
