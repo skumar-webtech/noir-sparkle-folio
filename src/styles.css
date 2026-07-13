@@ -110,6 +110,19 @@
   to { transform: translateX(-50%); }
 }
 
+.cert-carousel-track {
+  animation: cert-scroll 55s linear infinite;
+}
+
+.cert-carousel-paused {
+  animation-play-state: paused;
+}
+
+@keyframes cert-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 @utility font-syncopate {
   font-family: var(--font-syncopate);
   letter-spacing: 0.15em;

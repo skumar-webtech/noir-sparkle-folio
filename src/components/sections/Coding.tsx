@@ -54,7 +54,7 @@ export function Coding() {
     >
       <div className="relative mx-auto max-w-7xl">
         <div className="mb-4 flex items-center gap-3">
-          <span className="text-xs text-accent">03</span>
+          <span className="text-xs text-accent">04</span>
           <span className="h-px w-8 bg-accent" />
           <span className="track-wide text-[10px] uppercase text-white/60">
             Coding & Experience

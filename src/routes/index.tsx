@@ -11,6 +11,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Skills } from "@/components/sections/Skills";
+import { Certifications } from "@/components/sections/Certifications";
 import { Coding } from "@/components/sections/Coding";
 import { Projects } from "@/components/sections/Projects";
 import { TechMarquee } from "@/components/TechMarquee";
@@ -68,11 +69,12 @@ function Index() {
         </>
       )}
 
-      {/* Stage 1: FSD video (Hero + About + Skills) */}
+      {/* Stage 1: FSD video (Hero + About + Skills + Certifications) */}
       <div id="stage-fsd" className="relative z-10">
         <Hero />
         <About />
         <Skills />
+        <Certifications />
       </div>
 
       {/* Stage 2: Coding video */}

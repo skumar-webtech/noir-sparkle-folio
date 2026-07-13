@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Flip } from "gsap/Flip";
+import { Search } from "lucide-react";
 
 import { assetUrl } from "@/lib/assetUrl";
 import img3d from "@/assets/projects/3d-portfolio.png.asset.json";
@@ -17,7 +19,7 @@ import imgPulseChat from "@/assets/projects/temp/pulse-chat.png";
 import imgFluid from "@/assets/projects/temp/fluid-studio.png";
 import imgNike from "@/assets/projects/temp/nike-web.png";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, Flip);
 
 const projects = [
   {
@@ -126,14 +128,23 @@ const projects = [
   },
 ];
 
-function ProjectCard({ p, index }) {
+function projectMatches(p, query) {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+  return (
+    p.title.toLowerCase().includes(q) ||
+    p.category.toLowerCase().includes(q) ||
+    p.type.toLowerCase().includes(q) ||
+    p.tools.some((t) => t.toLowerCase().includes(q))
+  );
+}
+
+function ProjectCard({ p }) {
   const [loaded, setLoaded] = useState(false);
-  const [warm, setWarm] = useState(false); // start iframe fetch early (intent)
-  const [hovered, setHovered] = useState(false); // reveal iframe over image
+  const [warm, setWarm] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const iframeRef = useRef(null);
 
-  // Warm up iframe as soon as the pointer approaches the card, so by the time
-  // the user actually hovers the media, it's already loading (or loaded).
   const handleIntent = () => setWarm(true);
   const handleEnter = () => {
     setWarm(true);
@@ -148,14 +159,13 @@ function ProjectCard({ p, index }) {
       onPointerEnter={handleIntent}
       onFocus={handleIntent}
       onMouseEnter={handleEnter}
-      className="proj-card group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:border-white/30"
+      className="proj-card group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-2xl transition-colors duration-500 hover:border-white/30"
       style={{
         backdropFilter: "blur(14px) saturate(150%)",
         boxShadow:
           "0 20px 60px -20px rgba(0,0,0,0.6), inset 0 1px 0 0 rgba(255,255,255,0.06)",
       }}
     >
-      {/* Media container */}
       <div
         className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-900"
         style={{
@@ -164,7 +174,6 @@ function ProjectCard({ p, index }) {
           backgroundPosition: "center",
         }}
       >
-        {/* Loading spinner — only while user is actively hovering and iframe not ready */}
         {hovered && !loaded && (
           <div className="absolute inset-0 z-20 flex items-center justify-center">
             <div
@@ -174,8 +183,6 @@ function ProjectCard({ p, index }) {
           </div>
         )}
 
-        {/* Iframe mounts on intent (pointer-enter/focus) and stays mounted so
-            re-hover is instant. It's only revealed once loaded AND hovered. */}
         {warm && (
           <iframe
             ref={iframeRef}
@@ -192,15 +199,12 @@ function ProjectCard({ p, index }) {
           />
         )}
 
-        {/* Bottom gradient overlay */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
-        {/* Type badge */}
         <div className="absolute left-4 top-4 z-30 rounded-full border border-white/15 bg-white/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-white/85 backdrop-blur-sm">
           {p.type}
         </div>
 
-        {/* External arrow */}
         <div className="absolute right-4 top-4 z-30 flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white/85 backdrop-blur-sm transition-all duration-300 group-hover:border-accent/60 group-hover:text-accent">
           <svg
             width="14"
@@ -218,7 +222,6 @@ function ProjectCard({ p, index }) {
         </div>
       </div>
 
-      {/* Body */}
       <div className="relative flex flex-col gap-3 p-6">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
           {p.category}
@@ -246,6 +249,14 @@ function ProjectCard({ p, index }) {
 
 export function Projects() {
   const rootRef = useRef(null);
+  const gridRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const isFirstFilter = useRef(true);
+
+  const filteredProjects = useMemo(
+    () => projects.filter((p) => projectMatches(p, searchQuery)),
+    [searchQuery],
+  );
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -256,6 +267,18 @@ export function Projects() {
           opacity: 1,
           y: 0,
           duration: 1,
+          ease: "power3.out",
+          scrollTrigger: { trigger: rootRef.current, start: "top 85%" },
+        },
+      );
+
+      gsap.fromTo(
+        ".proj-search-wrap",
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
           ease: "power3.out",
           scrollTrigger: { trigger: rootRef.current, start: "top 85%" },
         },
@@ -280,6 +303,35 @@ export function Projects() {
     return () => ctx.revert();
   }, []);
 
+  useLayoutEffect(() => {
+    if (!gridRef.current || isFirstFilter.current) {
+      isFirstFilter.current = false;
+      return;
+    }
+
+    const state = Flip.getState(".proj-card");
+
+    Flip.from(state, {
+      duration: 0.55,
+      ease: "power2.inOut",
+      stagger: 0.04,
+      absolute: true,
+      onEnter: (elements) =>
+        gsap.fromTo(
+          elements,
+          { opacity: 0, scale: 0.9 },
+          { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" },
+        ),
+      onLeave: (elements) =>
+        gsap.to(elements, {
+          opacity: 0,
+          scale: 0.9,
+          duration: 0.3,
+          ease: "power2.in",
+        }),
+    });
+  }, [filteredProjects]);
+
   return (
     <section
       ref={rootRef}
@@ -287,9 +339,9 @@ export function Projects() {
       className="relative px-6 py-32 md:py-48"
     >
       <div className="relative mx-auto max-w-7xl">
-        <div className="projects-header mb-20">
+        <div className="projects-header mb-12 md:mb-16">
           <div className="mb-4 flex items-center gap-3">
-            <span className="text-xs text-accent">04</span>
+            <span className="text-xs text-accent">05</span>
             <span className="h-px w-8 bg-accent" />
             <span className="track-wide text-[10px] uppercase text-white/60">
               Projects
@@ -300,11 +352,49 @@ export function Projects() {
           </h2>
         </div>
 
-        <div className="proj-grid grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p, i) => (
-            <ProjectCard key={p.title} p={p} index={i} />
+        <div className="proj-search-wrap mb-10 md:mb-14">
+          <div className="relative w-full max-w-md">
+            <Search
+              size={16}
+              className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-white/40"
+              aria-hidden
+            />
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search by title, category, type, or tools…"
+              aria-label="Search projects"
+              className="w-full rounded-full border border-white/10 bg-white/5 px-6 py-3 pl-12 text-sm text-white placeholder-gray-400 backdrop-blur-md transition-all duration-300 focus:border-accent/30 focus:outline-none focus:ring-2 focus:ring-accent/40 focus:shadow-[0_0_24px_oklch(0.78_0.14_78/0.2)]"
+            />
+          </div>
+          {searchQuery.trim() && (
+            <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-white/50">
+              {filteredProjects.length} project
+              {filteredProjects.length !== 1 ? "s" : ""} found
+            </p>
+          )}
+        </div>
+
+        <div
+          ref={gridRef}
+          className="proj-grid grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+        >
+          {filteredProjects.map((p) => (
+            <ProjectCard key={p.title} p={p} />
           ))}
         </div>
+
+        {searchQuery.trim() && filteredProjects.length === 0 && (
+          <div className="proj-no-results mt-12 rounded-2xl border border-white/10 bg-white/5 px-8 py-12 text-center backdrop-blur-md">
+            <p className="font-display text-xl text-white/80">
+              No projects match your search.
+            </p>
+            <p className="mt-2 text-sm text-white/50">
+              Try a different keyword — title, category, type, or tool name.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );

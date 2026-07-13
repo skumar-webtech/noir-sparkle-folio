@@ -82,7 +82,7 @@ export function Contact() {
 
       <div className="relative z-10 mx-auto max-w-6xl">
         <div className="mb-4 flex items-center gap-3">
-          <span className="text-xs text-accent">05</span>
+          <span className="text-xs text-accent">06</span>
           <span className="h-px w-8 bg-accent" />
           <span className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
             Contact
